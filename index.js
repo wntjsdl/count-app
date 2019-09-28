@@ -72,10 +72,23 @@ CounterApp.prototype.increment = function() {
   this.count = this.count + 1;
 };
 
-counter = new CounterApp(0);
-console.log(counter.getCount()); // 0
-counter.increment();
-counter.increment();
-console.log(counter.getCount()); // 2
-counter.decrement();
-console.log(counter.getCount()); // 1
+const numberDiv = document.querySelector('.count-number');
+const counter = new CounterApp(0);
+numberDiv.innerHTML = counter.count;
+document.querySelector('.incerement-btn').addEventListener('click', function(){
+  counter.increment();
+  numberDiv.innerHTML = "";
+  numberDiv.innerHTML = counter.getCount();
+});
+document.querySelector('.decrement-btn').addEventListener('click', function(){
+  counter.decrement();
+  numberDiv.innerHTML = "";
+  numberDiv.innerHTML = counter.getCount();
+});
+
+// console.log(counter.getCount()); // 0
+// counter.increment();
+// counter.increment();
+// console.log(counter.getCount()); // 2
+// counter.decrement();
+// console.log(counter.getCount()); // 1
