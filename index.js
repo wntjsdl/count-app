@@ -52,6 +52,9 @@
 
 
 // 3. Class (Modern / ES2015+)
+// 생성자 인자 받을때 {} 객체 사용하기
+// innerHTML 보단 textContent 사용하기
+// init 함수 넣어서 사용하기
 
 class CounterApp {
   constructor(count) {
@@ -60,28 +63,45 @@ class CounterApp {
   getCount() {
     return this.count;
   };
-  increment() {
-    this.count = this.count + 1;
+  increment(value = 1) {
+    this.count = this.count + value;
   };
-  decrement() {
-    this.count = this.count - 1;
+  decrement(value = 1) {
+    this.count = this.count - value;
+  };
+  reset() {
+    this.count = 0;
   };
 }
 
-CounterApp.prototype.increment = function() {
-  this.count = this.count + 1;
-};
-
 const numberDiv = document.querySelector('.count-number');
 const counter = new CounterApp(0);
+let value = 0;
 numberDiv.innerHTML = counter.count;
 document.querySelector('.incerement-btn').addEventListener('click', function(){
-  counter.increment();
+  value = document.querySelector('#value').value;
+  if (value === '') {
+    value = 1;
+  } else {
+    value = parseInt(value);
+  }
+  counter.increment(value);
   numberDiv.innerHTML = "";
   numberDiv.innerHTML = counter.getCount();
 });
 document.querySelector('.decrement-btn').addEventListener('click', function(){
-  counter.decrement();
+  value = document.querySelector('#value').value;
+  if (value === '') {
+    value = 1;
+  } else {
+    value = parseInt(value);
+  }
+  counter.decrement(value);
+  numberDiv.innerHTML = "";
+  numberDiv.innerHTML = counter.getCount();
+});
+document.querySelector('.reset-btn').addEventListener('click', function(){
+  counter.reset();
   numberDiv.innerHTML = "";
   numberDiv.innerHTML = counter.getCount();
 });

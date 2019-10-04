@@ -9,9 +9,11 @@
 <body>
     <div class="title">counter-app</div>
     <div class="count-number"></div>
+    증감값: <input type="number" id="value" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
     <div class="button-wrapper">
         <button class="incerement-btn">+</button>
         <button class="decrement-btn">-</button>
+        <button class="reset-btn">reset</button>
     </div>
 
     <script src="./index.js"></script>
